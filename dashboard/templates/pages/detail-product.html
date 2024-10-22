@@ -1,0 +1,74 @@
+{% extends 'page/layout.html' %}
+{% block tilte %} {{ sp.TenSP}} {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="tm-block-title d-inline-block">Thông tin sản phẩm "{{ sp.TenSP}}"</h2>
+                </div>
+            </div>
+            <div class="row tm-edit-product-row">
+                <div class="col-xl-6 col-lg-6 col-md-12 text-warning">
+                    <div>
+                        <div class="form-group mb-3">
+                            <label for="TenSP">Tên Sản Phẩm</label>
+                            <p class="fw-bold">{{sp.TenSP}}</p>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="DonGia">Đơn Giá</label>
+                            {% load humanize %}
+                            <p class="fw-bold">{{sp.DonGia|intcomma}} VND</p>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="MoTa">Mô Tả</label>
+                            <p class="fw-bold">{{sp.MoTa}}</p>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="NCC">Nhà Cung Cấp</label>
+                            <p class="fw-bold">{{sp.NCC}}</p>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="SoLuong">Số Lượng</label>
+                            <p class="fw-bold">{{sp.SoLuong}}</p>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4 text-warning">
+                    <div class="form-group mb-3">
+                        <label for="HinhAnh">Hình Ảnh Sản Phẩm</label>
+                        <p><img src="/static/img/{{sp.HinhAnh}}" alt="" style="width: 300px;"></p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="LoaiSP">Loại Sản Phẩm</label>
+                        <p class="fw-bold">{{sp.LoaiSP}}</p>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="LoaiSP">Trạng Thái</label>
+                        {% if sp.TrangThai == "1" %}
+                            <p class="fw-bold">Còn Bán</p>
+                        {% else %}
+                            <p class="fw-bold">Ngừng Kinh Doanh</p>
+                        {% endif %}
+                    </div>
+                    <div class="col-12">
+                        <a href="/dashboard/edit-product/{{sp.MaSP}}" class="btn btn-primary btn-block text-uppercase">Edit</a>
+                        <a href="/dashboard/delete-product/{{sp.MaSP}}" class="btn btn-primary btn-block text-uppercase">Delete</a>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+                <a href="/dashboard/product-list" class="btn btn-primary btn-block text-uppercase">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

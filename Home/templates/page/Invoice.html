@@ -1,0 +1,39 @@
+{% extends "pages/layout.html" %}
+
+{% block title %}Xem Giỏ Hàng{% endblock %}
+
+{% block content %}
+<form action="" method="GET">
+    {% csrf_token %}
+    <label for="SDT">Nhập SDT</label>
+    <input type="tel" name="SDT">
+    <input type="submit" value="Tìm Kiếm">
+</form>
+{% if hd %}
+<table class="table table-hover tm-table-small tm-product-table">
+    <thead>
+        <tr>
+            <th scope="col">Mã Hoá Đơn</th>
+            <th scope="col">Ngày Đặt</th>
+            <th scope="col">Trạng Thái</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in hd %}
+        <tr>
+            <td>{{i.MaHD}}</td>
+            <td>{{i.NgayDat}}</td>
+            <td>{{i.TrangThai}}</td>
+            <td>
+                <a href="detail-invoice/{{i.MaHD}}" class="tm-product-delete-link">
+                    <i class="fas fa-info-circle tm-product-delete-icon">Xem Chi Tiết</i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}

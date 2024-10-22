@@ -1,0 +1,25 @@
+{% extends "pages/layout.html" %}
+{% block tilte %} Chi Tiết Hoá Đơn {% endblock %}
+{% block content %}
+<table class="table table-hover tm-table-small tm-product-table">
+    <thead>
+        <tr>
+            <th scope="col">Tên SP</th>
+            <th scope="col">Số Lượng</th>
+            <th scope="col">Đơn Giá</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in ct %}
+        <tr>
+            <td>{{i.TenSP}}</td>
+            <td>{{i.SoLuong}}</td>
+            {% load humanize %}
+            <td>{{i.DonGia|intcomma}} VND</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endblock %}

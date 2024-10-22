@@ -1,0 +1,70 @@
+{% extends 'page/layout.html' %}
+{% block title %}Danh Sách Tài Khoản{% endblock %}
+{% block content%}
+<div class="container mt-5">
+    <div class="row tm-content-row">
+        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                <div class="tm-product-table-container">
+                    <table class="table table-hover tm-table-small tm-product-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Username</th>
+                                <th scope="col">Is Staff</th>
+                                <th scope="col">Is Superuser</th>
+                                <!-- <th scope="col">Trạng Thái</th> -->
+                                
+                                <th scope="col">Chi Tiết</th>
+                                <th scope="col">Sửa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for item in users %}
+                            {% if user.username == item.username %}
+
+                            {% else %}
+                            <tr>
+                                <td class="tm-product-name">{{ item.username}}</td>
+                                <td>
+                                    {% if item.is_staff == 1 %}
+                                    <i style="color: greenyellow;" class="fas fa-check-circle"></i>
+                                    {% else %}
+                                    <i style="color: red;" class="fas fa-times-circle"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.is_superuser == 1 %}
+                                    <i style="color: greenyellow;" class="fas fa-check-circle"></i>
+                                    {% else %}
+                                    <i style="color: red;" class="fas fa-times-circle"></i>
+                                    {% endif %}
+                                </td>
+
+                                <td>
+                                    <a href="profile/{{item.id}}" class="tm-product-delete-link">
+                                        <i class="fas fa-info-circle tm-product-delete-icon"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="edit-profile/{{item.id}}" class="tm-product-delete-link">
+                                        <i class="fas fa-edit tm-product-delete-icon"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                            {% endif %}
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- table container -->
+                <a href="/dashboard/add-user" class="btn btn-primary btn-block text-uppercase mb-3">Add new User</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'page/layout.html' %}
+{% block title %}Chỉnh Sửa{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="tm-block-title d-inline-block">Chỉnh Sửa Sản Phẩm "{{ sp.TenSP }}"</h2>
+                </div>
+            </div>
+            <div class="row tm-edit-product-row">
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <form action="" method="POST" class="tm-edit-product-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for m in messages  %}
+                            {{m}}
+                        {% endfor %}
+                        <div class="form-group mb-3">
+                            <label for="TenSP">Tên Sản Phẩm</label>
+                            <input id="TenSP" name="TenSP" type="text" value="{{ sp.TenSP }}"
+                                class="form-control validate" required />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="DonGia">Đơn Giá</label>
+                            <input id="DonGia" name="DonGia" type="number" value="{{ sp.DonGia }}" min="0"
+                                class="form-control validate" required />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="MoTa">Mô Tả</label>
+                            <textarea class="form-control validate" rows="3" name="MoTa"
+                                required>{{ sp.MoTa }}</textarea>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="NCC">Nhà Cung Cấp</label>
+                            <input id="NCC" name="NCC" type="text" value="{{ sp.NCC }}" class="form-control validate"
+                                required />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="SoLuong">Số Lượng</label>
+                            <input id="SoLuong" name="SoLuong" type="number" min="0" value="{{ sp.SoLuong }}"
+                                class="form-control validate" required />
+                        </div>
+
+
+
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                    <div class="form-group mb-3">
+                        <label for="HinhAnh">Hình Ảnh Sản Phẩm</label>
+                        {% if sp.HinhAnh %}
+                        <img src="/static/img/{{ sp.HinhAnh }}" style="width: 300px;" alt="">
+                        {% endif %}
+                        <input id="HinhAnh" name="HinhAnh" type="file" accept="image/*" class="form-control validate" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="LoaiSP">Loại Sản Phẩm</label>
+                        <select class="custom-select tm-select-accounts" id="LoaiSP" name="LoaiSP">
+                            {% for item in loaiSP %}
+                                {% if sp.LoaiSP_id == item.MaLoai %}
+                                    <option selected value="{{ item.MaLoai }}">{{ item.TenLoai }}</option>
+                                {% else %}
+                                    <option value="{{ item.MaLoai }}">{{ item.TenLoai }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-block text-uppercase">Update</button>
+                    <div style="clear:both"></div>
+                    <a href="/dashboard/product-list" class="btn btn-primary btn-block text-uppercase">Back</a>
+                </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'page/layout.html' %}
+{% block title %}Thêm nhân viên mới{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="tm-block-title d-inline-block">Thêm nhân viên mới</h2>
+                </div>
+            </div>
+            <div class="row tm-edit-product-row">
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <form action="add-user" method="POST" class="tm-edit-product-form">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="username">Username</label>
+                            <input id="username" name="username" type="text" class="form-control validate" required />
+                            {% if form.errors.TenLoai %}
+                            <div style="background-color: rgb(0, 208, 255); width: 200px; height: 20px;">{{
+                                form.errors.TenLoai }}</div>
+                            {% endif %}
+                            <label for="password">Password</label>
+                            <input id="password" name="password" type="password" class="form-control validate"
+                                required />
+
+                            <label for="con_password">Confirm Password</label>
+                            <input id="con_password" name="con_password" type="password" class="form-control validate"
+                                required />
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="0" name="is_superuser">
+                                <label class="form-check-label" for="is_superuser">
+                                    Super User
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" name="is_staff" disabled
+                                    checked>
+                                <label class="form-check-label" for="is_staff">
+                                    Staff
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

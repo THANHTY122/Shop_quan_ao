@@ -1,0 +1,40 @@
+{% extends "pages/layout.html" %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center my-4 text-black">
+            <h2 style="font-family: 'Roboto', sans-serif;">Kết quả tìm kiếm cho: "{{ search_query }}"</h2>
+        </div>
+    </div>
+    <hr width="100%">
+    <div class="row">
+        {% if products %}
+            {% for sp in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ sp.HinhAnh.url }}" alt="{{ sp.TenSP }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ sp.TenSP }}</h5>
+                            <p class="card-text">{{ sp.short_description }}</p>
+                            <p class="card-text"><strong>Giá: </strong>{{ sp.DonGia }} VND</p>
+                            <div class="btn-group d-flex">
+                                <a href="{% url 'product_detail' sp.MaSP %}" class="btn btn-primary flex-fill mr-1">Xem chi tiết</a>
+                                <button class="btn btn-success flex-fill add-to-cart" data-product-id="{{ sp.id }}">Thêm vào giỏ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center my-4 text-black">
+                <p>Không tìm thấy sản phẩm phù hợp.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'page/layout.html' %}
+{% block title %}Chỉnh Sửa{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="tm-block-title d-inline-block">Quản lý Sản Phẩm "{{ sp.TenSP }}"</h2>
+                </div>
+            </div>
+            <div class="row tm-edit-product-row">
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <form action="" method="POST" class="tm-edit-product-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for error in form.errors %}
+                        {{ error }}
+                        {% endfor %}
+                        <div class="form-group mb-3">
+                            <label for="TenSP">Tên Sản Phẩm</label>
+                            <input id="TenSP" name="TenSP" type="text" style="color: red;" value="{{ sp.TenSP }}" class="form-control validate" readonly />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="DonGia">Đơn Giá</label>
+                            <input id="DonGia" name="DonGia" type="number" style="color: red;" value="{{ sp.DonGia }}" min="0" class="form-control validate" readonly />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="MoTa">Mô Tả</label>
+                            <textarea class="form-control validate" style="color: red;" rows="3" name="MoTa" readonly>{{ sp.MoTa }}</textarea>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="NCC">Nhà Cung Cấp</label>
+                            <input id="NCC" name="NCC" type="text" style="color: red;" value="{{ sp.NCC }}" class="form-control validate" readonly />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="SoLuong">Số Lượng</label>
+                            <input id="SoLuong" name="SoLuong" type="number" style="color: red;" min="0" value="{{ sp.SoLuong }}" class="form-control validate" readonly />
+                        </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                    <div class="form-group mb-3">
+                        <label for="HinhAnh">Hình Ảnh Sản Phẩm</label>
+                        {% if sp.HinhAnh %}
+                        <img src="/static/img/{{ sp.HinhAnh }}" style="width: 300px;" alt="">
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="LoaiSP">Loại Sản Phẩm</label>
+                        <input id="LoaiSP" name="LoaiSP" type="text" style="color: red;" value="{{ sp.LoaiSP.TenLoai }}" class="form-control validate" readonly />
+                    </div>                    
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" name="action" value="delete" class="btn btn-danger btn-block text-uppercase">Xóa Sản Phẩm</button>
+                    <button type="submit" name="action" value="hide" class="btn btn-warning btn-block text-uppercase">Ẩn Sản Phẩm</button>
+                    <div style="clear: both;"></div>
+                    <a href="/dashboard/product-list" class="btn btn-primary btn-block text-uppercase">Quay Lại</a>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

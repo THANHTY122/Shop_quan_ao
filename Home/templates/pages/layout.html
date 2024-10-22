@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %} {% endblock %}</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+  
+
+  <style>
+    .navbar-nav .nav-link {
+      font-size: 1rem; 
+    }
+
+    .dropdown-menu .dropdown-item {
+      font-size: 0.9rem; 
+    }
+
+    footer .text-uppercase {
+      font-size: 1.1rem; 
+    }
+
+    .footer-text p {
+      font-size: 1rem; 
+    }
+
+    .form-control {
+      font-size: 1.1rem; 
+    }
+  </style>
+</head>
+
+<body>
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-1">
+          <!-- <h1 class="heading-section" style="font-size: 60px;">Urban Threads</h1> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'img/logo.png' %}" alt="Logo" height="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item active">
+              <a href="{% url 'home' %}" class="nav-link">Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'product' %}" class="nav-link">Sản phẩm</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Loại
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for loai in loaisanpham %}
+                <a class="dropdown-item" href="{% url 'DSSPTheoLoai' loai.MaLoai %}">{{ loai.TenLoai }}</a>
+                {% endfor %}
+              </div>
+            </li>
+            <li class="nav-item">
+              <a href="/cart" class="nav-link">Giỏ hàng</a>
+            </li>
+            <li class="nav-item">
+              <a href="/hoa-don" class="nav-link">Hóa đơn</a>
+            </li>
+          </ul>
+          <!-- Search form -->
+          <form action="{% url 'search_products' %}" method="GET" class="form-inline my-2 my-lg-0">
+            <div class="input-group">
+              <input class="form-control" type="search" name="search_query" placeholder="Tìm kiếm sản phẩm" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-outline-success" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- User Authentication -->
+          <ul class="navbar-nav ml-lg-4">
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                {% if user.email %}
+                {{ user.email }}
+                {% else %}
+                {{ user.username }}
+                {% endif %}
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <form action="{% url 'logout' %}" method="POST" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Đăng xuất</button>
+                  </form>
+                </a>
+              </div>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a href="/SignIn" class="nav-link">Đăng nhập</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+
+  </section>
+
+  <div class="col-sm-12 mt-5 pt-5">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+ <!-- Footer -->
+<footer class="bg-dark text-white pt-5 pb-4">
+  <div class="container text-center text-md-left">
+    <div class="row text-center text-md-left">
+      
+      <!-- About Us Column -->
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Về chúng tôi</h6>
+        <p>
+          Chúng tôi cung cấp những sản phẩm thời trang chất lượng với cam kết về dịch vụ và sự tư vấn tận tâm cho khách hàng.
+        </p>
+      </div>
+
+      <!-- Products Links Column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Sản phẩm</h6>
+        <p><a href="#" class="text-white" style="text-decoration: none;">Thời trang nữ</a></p>
+        <p><a href="#" class="text-white" style="text-decoration: none;">Thời trang nam</a></p>
+        <p><a href="#" class="text-white" style="text-decoration: none;">Phụ kiện</a></p>
+        <p><a href="#" class="text-white" style="text-decoration: none;">Khuyến mãi</a></p>
+      </div>
+
+      <!-- Useful Links Column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Liên kết hữu ích</h6>
+        <p><a href="#" class="text-white" style="text-decoration: none;">Tài khoản của bạn</a></p>
+        <p><a href="#" class="text-white" style="text-decoration: none;">Giỏ hàng</a></p>
+        <p><a href="#" class="text-white" style="text-decoration: none;">Hỗ trợ khách hàng</a></p>
+        <p><a href="#" class="text-white" style="text-decoration: none;">Trợ giúp</a></p>
+      </div>
+
+      <!-- Contact Info Column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Liên hệ</h6>
+        <p><i class="fas fa-home mr-3"></i> 140, Đường Lê Trọng Tấn, TP. HCM</p>
+        <p><i class="fas fa-envelope mr-3"></i> urbanthreads@gmail.com</p>
+        <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+        <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+      </div>
+    </div>
+
+    <hr class="mb-4">
+
+    <!-- Social Media Section -->
+    <div class="row align-items-center">
+      <div class="col-md-7 col-lg-8">
+        <p class="text-center text-md-left">© 2024 Bản quyền thuộc về 
+          <a href="#" class="text-white"><strong>Công ty thời trang Urban Threads</strong></a>
+        </p>
+      </div>
+      <div class="col-md-5 col-lg-4">
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                <i class="fab fa-google"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;">
+                <i class="fab fa-github"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- End Footer -->
+
+
+
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'js/main.js' %}" type="text/javascript"></script>
+</body>
+
+</html>

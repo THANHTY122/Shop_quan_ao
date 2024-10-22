@@ -1,0 +1,113 @@
+{% extends "pages/layout.html" %}
+{% block title %}
+Product
+{% endblock %}
+
+{% block content %}
+<!-- Import Google Fonts and Bootstrap CSS -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<!-- Product Container -->
+<div class="container my-5">
+    <!-- Product Category Header -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2 class="fw-bold" style="font-family: 'Roboto', sans-serif;">{{ loai_san_pham.TenLoai }}</h2>
+        </div>
+    </div>
+    
+    <hr class="mb-5">
+
+    <!-- Product List -->
+    <div class="row">
+        {% for sp in sanpham %}
+        <div class="col-md-4 mb-4 d-flex align-items-stretch">
+            <!-- Product Card -->
+            <div class="card shadow-sm hover-effect" style="width: 100%; border-radius: 12px;">
+                <!-- Product Image -->
+                <img class="card-img-top" src="{{ sp.HinhAnh.url }}" alt="{{ sp.TenSP }}" style="border-radius: 12px 12px 0 0; object-fit: contain; height: 250px; width: 100%;">
+                
+                <!-- Product Details -->
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center fw-bold">{{ sp.TenSP }}</h5>
+                    <p class="card-text text-center text-muted mb-4">
+                        <strong>Giá: </strong>
+                        {% load humanize %}
+                        {{ sp.DonGia|intcomma }} VND
+                    </p>
+                    
+                    <!-- Action Buttons -->
+                    <div class="mt-auto">
+                        <a href="{% url 'product_detail' sp.MaSP %}" class="highlight-button btn btn-custom-medium w-100 mb-2">
+                            <i class="fa fa-eye"></i> Xem chi tiết
+                        </a>
+
+                        {% if user.is_authenticated %}
+                            <button class="highlight-button btn btn-custom-medium w-100 add-to-cart" data-product-id="{{ sp.MaSP }}">
+                                <i class="fa fa-plus"></i> Thêm vào giỏ
+                            </button>
+                        {% else %}
+                            <a class="highlight-button btn btn-warning w-100" href="/SignIn?next=addToCart/{{ sp.MaSP }}">
+                                <i class="fa fa-plus"></i> Thêm vào giỏ
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- jQuery for adding product to cart -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}" type="text/javascript"></script>
+<script>
+    $(document).ready(function() {
+        $('.add-to-cart').click(function() {
+            var productId = $(this).data('product-id');
+            $.ajax({
+                url: '/addToCart/' + productId,
+                method: 'GET',
+                success: function(response) {
+                    alert('Sản phẩm đã được thêm vào giỏ hàng!');
+                },
+                error: function() {
+                    alert('Có lỗi xảy ra, vui lòng thử lại.');
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+.hover-effect:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+
+.btn-custom-medium {
+    display: inline-block;
+    margin-right: 20px;
+    letter-spacing: 2px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    padding: 10px 22px;
+    border: 2px solid #000; /* Bordered style */
+    background-color: transparent; /* Background color */
+    color: #000; /* Text color */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+.btn-custom-medium:hover {
+    background-color: #000; /* Hover background color */
+    color: #fff; /* Hover text color */
+}
+
+.highlight-button i {
+    margin-right: 5px; /* Space between icon and text */
+}
+</style>
+{% endblock %}

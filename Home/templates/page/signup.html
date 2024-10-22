@@ -1,0 +1,76 @@
+{% extends "pages/layout.html" %}
+
+{% block title %}Đăng ký{% endblock %}
+
+{% block content %}
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid"
+          alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form method="post" action="{% url 'account_signup' %}">
+          {% csrf_token %}
+
+          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+            <p class="lead fw-normal mb-0 me-3">Đăng ký với</p>
+            <a href="" class="btn btn-primary btn-floating mx-1">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <!-- Nút đăng ký Google -->
+            <a href="{% url 'google_login' %}" class="btn btn-primary btn-floating mx-1">
+              <i class="fab fa-google"></i>
+            </a>                      
+          </div>
+
+          <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0">Hoặc</p>
+          </div>
+
+          <!-- Email input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="email" name="email" id="form3Example1" class="form-control form-control-lg" placeholder="Email"
+              required />
+            <label class="form-label" for="form3Example1">Địa chỉ email</label>
+          </div>
+
+          <!-- Password input -->
+          <div data-mdb-input-init class="form-outline mb-3">
+            <input type="password" name="password1" id="form3Example2" class="form-control form-control-lg"
+              placeholder="Mật khẩu" required />
+            <label class="form-label" for="form3Example2">Mật khẩu</label>
+          </div>
+
+          <!-- Confirm Password input -->
+          <div data-mdb-input-init class="form-outline mb-3">
+            <input type="password" name="password2" id="form3Example3" class="form-control form-control-lg"
+              placeholder="Xác nhận mật khẩu" required />
+            <label class="form-label" for="form3Example3">Xác nhận mật khẩu</label>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <!-- Checkbox -->
+            <div class="form-check mb-0">
+              <input class="form-check-input me-2" type="checkbox" name="terms" id="form2Example3" required />
+              <label class="form-check-label" for="form2Example3">
+                Tôi đồng ý với các <a href="#" class="text-body"><u>Điều khoản dịch vụ</u></a>
+              </label>
+            </div>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button type="submit" class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">Đăng ký</button>
+            <p class="small fw-bold mt-2 pt-1 mb-0">Đã có tài khoản ?
+              <a href="{% url 'account_login' %}" class="link-danger">Đăng nhập</a>
+            </p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

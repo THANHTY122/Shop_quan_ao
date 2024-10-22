@@ -1,0 +1,32 @@
+{% extends 'page/layout.html' %}
+{% block title %}Quản lý Loại Sản Phẩm{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="tm-block-title d-inline-block">Quản lý Loại Sản Phẩm "{{ category.TenLoai }}"</h2>
+                </div>
+            </div>
+            <div class="row tm-edit-product-row">
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <form action="" method="POST" class="tm-edit-product-form">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="TenLoai">Tên Loại Sản Phẩm</label>
+                            <input id="TenLoai" name="TenLoai" type="text" style="color: red;" value="{{ category.TenLoai }}"
+                                class="form-control validate" readonly />
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" name="action" value="disable" class="btn btn-warning btn-block text-uppercase">Ẩn</button>
+                            <button type="submit" name="action" value="delete" class="btn btn-danger btn-block text-uppercase">Xóa</button>
+                            <a href="/dashboard/product-list" class="btn btn-primary btn-block text-uppercase">Trở lại</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

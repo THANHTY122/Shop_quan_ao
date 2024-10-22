@@ -1,0 +1,23 @@
+# Bỏ qua các tệp biên dịch Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Bỏ qua thư mục virtual environment (nếu có)
+venv/
+env/
+
+# Bỏ qua cơ sở dữ liệu SQLite (nếu dự án sử dụng SQLite)
+db.sqlite3
+
+# Bỏ qua các tệp log
+*.log
+
+# Bỏ qua các thư mục static và media (thường được phục vụ từ một nơi khác)
+media/
+static/
+
+# Bỏ qua các tệp cấu hình hệ điều hành hoặc môi trường phát triển cục bộ
+*.env
+.DS_Store
