@@ -1,6 +1,11 @@
 # Sử dụng image Python cơ bản
 FROM python:3.10-slim
 
+# Cài đặt các công cụ build bổ sung
+RUN apt-get update && \
+    apt-get install -y gcc g++ python3-dev && \
+    apt-get clean
+
 # Đặt thư mục làm việc cho ứng dụng Django
 WORKDIR /app
 
