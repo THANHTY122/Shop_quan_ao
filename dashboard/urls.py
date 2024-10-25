@@ -18,8 +18,6 @@ urlpatterns = [
     path('edit-product/<int:MaSP>', views.edit_product, name = 'edit-product'),
     path('delete-product/<int:MaSP>', views.manage_product, name = 'delete-product'),
     path('edit-category/<int:MaLoai>', views.edit_category, name = 'edit_category'),
-
-    # path('delete-category/<int:MaLoai>', views.manage_category, name = 'hide_category'),
     path('delete-category/<int:MaLoai>/', views.manage_category, name='delete-category'),
 
     path('user-list', views.user_list, name= 'user-list'),

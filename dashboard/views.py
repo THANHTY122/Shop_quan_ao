@@ -213,7 +213,7 @@ def manage_category(request, MaLoai):
     if request.method == "POST":
         action = request.POST.get('action')
         if action == "disable":
-            category.TrangThai = "0"  # Đánh dấu là đã ẩn
+            category.TrangThai = "0"  # Đánh dấu ẩn
             category.save()
             messages.success(request, "Loại sản phẩm đã được ẩn!")
         elif action == "delete":

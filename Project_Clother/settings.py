@@ -39,11 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dashboard', #new
-    'django.contrib.humanize', #currency
-    'Home', # new
+    'dashboard', 
+    'django.contrib.humanize', 
+    'Home', 
 
-    'django.contrib.sites',  # Yêu cầu của django-allauth
+    'django.contrib.sites', 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -57,10 +57,6 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = (
-    # 'django.contrib.auth.backends.ModelBackend',
-    # 'allauth.account.auth_backends.AuthenticationBackend',
-
-    # 'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.google.GoogleOAuth2',  
     'django.contrib.auth.backends.ModelBackend',
 )
@@ -70,6 +66,8 @@ import os
 
 CLIENT_ID = os.getenv('GOOGLE_OAUTH_CLIENT_ID')
 CLIENT_SECRET = os.getenv('GOOGLE_OAUTH_CLIENT_SECRET')
+
+
 
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
@@ -82,9 +80,13 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# Thiết lập email khi đăng ký tài khoản
-ACCOUNT_EMAIL_VERIFICATION = 'none'  #  'mandatory' yêu cầu xác thực email
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'  
 ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False  
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True  
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -132,10 +134,21 @@ WSGI_APPLICATION = 'Project_Clother.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'DB_Shop',  
+        'USER': 'hothanhty',  
+        'PASSWORD': 'tyho7236',  
+        'HOST': 'localhost',  
+        'PORT': '3306',  
     }
 }
 

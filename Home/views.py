@@ -7,6 +7,8 @@ from django.contrib.auth.forms import UserCreationForm
 import datetime
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
+from django.core.paginator import Paginator
+
 
 # Import models và serializers
 from dashboard.models import LoaiSanPham, SanPham, NguoiDung, HoaDon, CTHoaDon
@@ -58,8 +60,17 @@ def home(request):
 
 def product(request):
     loaisanpham = LoaiSanPham.objects.filter(TrangThai=1)
-    sanpham = SanPham.objects.all()
-    return render(request, 'page/product.html', {'loaisanpham': loaisanpham, 'sanpham': sanpham})
+    sanpham_list = SanPham.objects.all()  
+
+    # Thiết lập Paginator
+    paginator = Paginator(sanpham_list, 5)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'page/product.html', {
+        'loaisanpham': loaisanpham,
+        'sanpham': page_obj,  
+    })
 
 def product_detail(request, ml):
     sp = SanPham.objects.get(MaSP=ml)
