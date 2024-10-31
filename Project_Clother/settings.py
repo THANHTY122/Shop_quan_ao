@@ -74,7 +74,9 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'shop-quan-ao-git-nvthanhty-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com']
+
 
 
 LOGIN_REDIRECT_URL = '/'
