@@ -67,7 +67,7 @@ def product(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'page/product.html', {
+    return render(request, 'page/Product.html', {
         'loaisanpham': loaisanpham,
         'sanpham': page_obj,  
     })
