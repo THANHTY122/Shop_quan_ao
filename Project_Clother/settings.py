@@ -233,9 +233,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login'
 
-import os
+# import os
 
-PORT = os.getenv('PORT', '8080')
+# PORT = os.getenv('PORT', '8080')
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # CSRF_TRUSTED_ORIGINS = [
 #     'https://shop-clother-git-nvthanhty-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com'
