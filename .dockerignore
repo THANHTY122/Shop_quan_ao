@@ -9,6 +9,8 @@ env/
 
 *.log
 
+media/
+static/
 
 *.env
 .DS_Store
