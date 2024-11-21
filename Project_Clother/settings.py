@@ -89,13 +89,15 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 #    'shop-quan-ao-git-doanopenshift-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com'
 #]
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'shop-quan-ao-git-nvthanhty-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com',
-    'shop-quan-ao-git-doanopenshift-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com',
-    'shop-clother-git-nvthanhty-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com'
-]
+# ALLOWED_HOSTS = [
+#     'localhost',
+#     '127.0.0.1',
+#     'shop-quan-ao-git-nvthanhty-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com',
+#     'shop-quan-ao-git-doanopenshift-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com',
+#     'shop-clother-git-nvthanhty-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com'
+# ]
+
+ALLOWED_HOSTS = ['*']
 
 
 
