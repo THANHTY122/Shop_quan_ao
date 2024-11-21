@@ -29,7 +29,10 @@ STATICFILES_DIRS = [
 SECRET_KEY = 'django-insecure-o77_hvf!u$fn=51&076uyj9pz$wb+p1-h_kz_w-iqndj*ka6a-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+
+DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1']
+
 
 
 
