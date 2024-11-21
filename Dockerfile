@@ -16,4 +16,6 @@ COPY . /app/
 
 EXPOSE 8080
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "Project_Clother.wsgi:application"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:8080", "Project_Clother.wsgi:application"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn Project_Clother.wsgi:application --bind 0.0.0.0:8080"]
+
