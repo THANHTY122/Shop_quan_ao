@@ -241,3 +241,20 @@ LOGIN_URL = 'login'
 #     'https://shop-clother-git-nvthanhty-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com'
 # ]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
