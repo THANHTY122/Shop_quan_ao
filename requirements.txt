@@ -45,5 +45,8 @@ urllib3==2.2.3
 gunicorn
 PyMySQL
 
+whitenoise==6.5.0 
+
+
 
 
