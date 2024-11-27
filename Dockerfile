@@ -7,6 +7,8 @@ RUN apt-get update && \
 
 WORKDIR /app
 
+RUN pip install whitenoise
+
 COPY requirements.txt /app/
 
 # Cài đặt các gói từ requirements.txt (bao gồm PyMySQL)
