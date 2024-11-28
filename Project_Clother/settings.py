@@ -103,7 +103,7 @@ ALLOWED_HOSTS = ['*']
 #     'https://shop-quan-ao-git-4-nvthanhty122-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com',
 # ]
 
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://shop-quan-ao-git-clothingshop-dev.apps.sandbox-m3.1530.p1.openshiftapps.com',]
 
 
 
