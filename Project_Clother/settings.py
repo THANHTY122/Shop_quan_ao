@@ -99,10 +99,11 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://shop-quan-ao-git-4-nvthanhty122-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com',
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://shop-quan-ao-git-4-nvthanhty122-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com',
+# ]
 
+CSRF_TRUSTED_ORIGINS = ['*']
 
 
 
