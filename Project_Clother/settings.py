@@ -270,3 +270,7 @@ LOGGING = {
         },
     },
 }
+
+from django.contrib.sites.models import Site
+site = Site.objects.create(domain="shop-quan-ao-git-clothingshop-dev.apps.sandbox-m3.1530.p1.openshiftapps.com", name="Clothing Shop")
+
