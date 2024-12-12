@@ -48,10 +48,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Sao chép mã nguồn dự án
 COPY . /app/
 
-USER root  # Chuyển user thành root để có quyền cao
-RUN chmod -R 777 /app/media/images
-
-USER 1001  # Trả về user không phải root sau khi thiết lập
+# Tạo thư mục và gán quyền
+RUN mkdir -p /app/media/images && chmod -R 777 /app/media/images
 
 # Thu thập các tệp tĩnh
 RUN python manage.py collectstatic --noinput
