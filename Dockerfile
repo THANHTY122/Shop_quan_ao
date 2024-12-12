@@ -48,6 +48,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Sao chép mã nguồn dự án
 COPY . /app/
 
+RUN chmod -R 777 /app/media/images
+
 # Thu thập các tệp tĩnh
 RUN python manage.py collectstatic --noinput
 
