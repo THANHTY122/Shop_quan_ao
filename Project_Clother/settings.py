@@ -60,7 +60,9 @@ INSTALLED_APPS = [
     'django_extensions',
 ]
 
-SITE_ID = 1
+site = Site.objects.get(domain="shop-quan-ao-git-clothingshop-dev.apps.sandbox-m3.1530.p1.openshiftapps.com")
+print(site.id)
+
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',  
