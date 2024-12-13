@@ -71,7 +71,7 @@
                 Loại
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              {% for loai in loaisanpham %}
+              {% for loai in dashboard_loaisanpham; %}
               <a class="dropdown-item" href="{% url 'DSSPTheoLoai' loai.MaLoai_id %}">{{ loai.TenLoai }}</a>
               {% endfor %}
             </div>
