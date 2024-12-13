@@ -118,6 +118,10 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False  
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True  
 
+ACCOUNT_LOGIN_ON_SIGNUP = True  # Đăng nhập ngay sau khi đăng ký thành công
+SOCIALACCOUNT_LOGIN_ON_GET = True  # Đăng nhập trực tiếp qua OAuth không cần trang trung gian
+
+
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
