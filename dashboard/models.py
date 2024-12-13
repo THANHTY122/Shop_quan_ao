@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 
 class LoaiSanPham(models.Model):
-    MaLoai = models.AutoField(primary_key=True)
+    MaLoai_id = models.AutoField(primary_key=True)
     TenLoai = models.CharField(max_length=100)
     TrangThai = models.SmallIntegerField(default=1)  # 1: Hoạt động, 0: Đã ẩn
 
