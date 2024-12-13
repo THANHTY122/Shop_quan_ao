@@ -71,10 +71,10 @@
                 Loại
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              {% for loai in dashboard_loaisanpham; %}
-              <a class="dropdown-item" href="{% url 'DSSPTheoLoai' loai.MaLoai_id %}">{{ loai.TenLoai }}</a>
-              {% endfor %}
-            </div>
+                {% for loai in loaisanpham %}
+                <a class="dropdown-item" href="{% url 'DSSPTheoLoai' loai.MaLoai %}">{{ loai.TenLoai }}</a>
+                {% endfor %}
+              </div>
             </li>
             <li class="nav-item">
               <a href="/cart" class="nav-link">Giỏ hàng</a>
